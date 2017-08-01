@@ -1,19 +1,19 @@
 var app = angular.module('quoteModule');
 
-app.controller('quoteCtrl', function($scope) {
-  // $scope.quote = response.data;
-});
+app.controller('quoteCtrl', function($scope, $http, $timeout) {
 
-app.factory('quoteFactory', function($http){
-
-  return {};
-
-  $http({
+  var returnedQuotes = $http({
     method: 'GET',
     url: '/test'
-  }).then(function(response) {
   });
 
+  $scope.quote = returnedQuotes.$$state;
+
+  $timeout(function(){
+    for (var i = 0; i < 4; i++) {
+      return i;
+    }
+  }, 3000);
 });
 
 app.config(function($routeProvider) {
